@@ -1,0 +1,14 @@
+{
+  "name": "backg14",
+  "version": "1.0.0",
+  "description": "proyecto ciclo 4 g14",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
