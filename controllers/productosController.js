@@ -1,46 +1,45 @@
 const Productos = require("../models/Productos");
-const Usuario = require("../models/Productos");
 
 
 
-exports.obtenerProducto = async (req, res) => {
-    try {
-        const Producto = await Productos.find({ creador: req.usuario.id });
 
-        res.json({ producto });
-    } catch (error) {
+exports.obtenerProductosHome = async ( req, res) => {
+    try{
+        const productos = await Productos.find();
+
+ 
+
+        res.json({ productos });
+    }catch(error){
         console.log(error);
     }
+
+ 
+
 };
 
-exports.crearProducto = async (req, res) => {
-    const { categoriaId } = req.body;
-    try {
-        const encontrarCategoria = await Categorias.findById(categoriaId);
-        console.log(encontrarCategoria);
+ 
 
+exports.obtenerProducto = async ( req, res) => {
+    const { id } = req.params
+    const producto = await Productos.find().where("categoriaId").equals(id);
+    res.json(producto);
+
+ 
+
+};
+exports.crearProducto = async ( req, res) => {
+    try{
         const producto = new Productos(req.body);
-        producto.save();
-        res.json(producto);
 
+ 
 
-
-    } catch (error) {
-        console.log(error);
-    }
-
-
-    /*try{
-        const producto= new Productos(req.body);
-        producto.creador =req.usuario.id;
         producto.save();
         res.json(producto);
     }catch(error){
         console.log(error);
-    };*/
-
+    }
 };
-
 exports.actualizarProducto = async (req, res) => {
     const { id } = req.params;
     const producto = await Productos.findById(id);
